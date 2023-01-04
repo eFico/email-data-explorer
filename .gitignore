@@ -39,6 +39,9 @@ build/Release
 
 # Dependency directories
 node_modules/
+email-app/node_modules/
+bulk-data/vendor/
+email-api/vendor/
 jspm_packages/
 
 # TypeScript v1 declaration files
