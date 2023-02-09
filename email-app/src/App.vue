@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col  font-Roboto bg-weather-primary h-screen">
+  <div class="flex flex-col  font-Roboto bg-weather-primary min-h-screen">
     <SiteNavigation/>
     <RouterView/>
   </div>

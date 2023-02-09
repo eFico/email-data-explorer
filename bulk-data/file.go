@@ -12,19 +12,39 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
-
-	"github.com/pkg/profile"
+	//"github.com/pkg/profile"
 )
 
 func main() {
 	//Trace
-	defer profile.Start(profile.TraceProfile, profile.ProfilePath(".")).Stop()
+	//defer profile.Start(profile.TraceProfile, profile.ProfilePath(".")).Stop()
+	//trace.Start(os.Stdout)
+	//defer trace.Stop()
+	/*
+		f, err := os.Create("tracex.out")
+		if err != nil {
+			log.Fatalf("failed to create trace output file: %v", err)
+		}
+		defer func() {
+			if err := f.Close(); err != nil {
+				log.Fatalf("failed to close trace file: %v", err)
+			}
+		}()
+
+		if err := trace.Start(f); err != nil {
+			log.Fatalf("failed to start trace: %v", err)
+		}
+		defer trace.Stop()
+	*/
 	//CPU
 	//defer profile.Start(profile.CPUProfile, profile.ProfilePath(".")).Stop()
+	//pprof.StartCPUProfile(os.Stdout)
+	//defer pprof.StopCPUProfile()
+
 	//Memory
 	//defer profile.Start(profile.MemProfile, profile.ProfilePath("."), profile.MemProfileRate(1)).Stop()
-
-	basePath := "C:/Users/Fico/Desktop/truora/zinc/data_base/enron_mail_20110402/maildir"
+	removeJsonFolder()
+	basePath := "C:/Users/Fico/Desktop/truora/zinc/data_base/enron_mail_20110402x3/maildir"
 
 	folders := mailDir(basePath)
 
@@ -63,7 +83,7 @@ func main() {
 		wg.Wait()
 	*/
 
-	bulkZinc("json")
+	//bulkZinc("json")
 
 }
 
@@ -252,6 +272,26 @@ func bulkZinc(pathFolder string) {
 
 	/**/
 
+}
+
+func removeJsonFolder() {
+	folder := "json"
+
+	// Elimina todo el contenido de la carpeta
+	err := os.RemoveAll(folder)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Contenido eliminado correctamente")
+	}
+
+	err = os.Mkdir(folder, 0755)
+
+	if err != nil {
+		fmt.Println(err)
+
+	}
+	fmt.Println("Carpeta creada correctamente")
 }
 
 type Index struct {
